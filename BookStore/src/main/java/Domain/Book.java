@@ -1,4 +1,4 @@
-package net.codejava.hibernate;
+package Domain;
 
 import javax.persistence.*;
 
@@ -12,6 +12,12 @@ public class Book {
 	private float price;
 	
 	public Book() {}
+	
+	public Book(String title, String author, float price) {
+		this.title = title;
+		this.author = author;
+		this.price = price;
+	}
 	
 	@Id
 	@Column(name = "book_id")
@@ -41,7 +47,10 @@ public class Book {
 		this.price = price;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return title + "  " + author + "  " + price + "  ";
+	}
 	
 
 }

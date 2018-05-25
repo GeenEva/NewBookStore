@@ -10,59 +10,29 @@ public class BookManager {
 
 	protected SessionFactory sessionFactory;
 	
-		
-	protected void setUp() {
+	/*Originally this method in the tutorial had a void return, but since I wanted to call this method
+	*now from another class, I had to have an object, so changed the return type to SessionFactory()
+	*
+	*/
+	
+	public SessionFactory setUp() {
 		
 		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
 				.configure()	//configures settings from hibernate.cfg.xml
 				.build();
 		try {
-			sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+			return sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
 		} catch	(Exception ex) {
 			StandardServiceRegistryBuilder.destroy(registry);
+			
 		}
-		
+		return null;
 		
 	}
 	
-	protected void exit() {
+	public void exit() {
 		sessionFactory.close();
 	}
 	
-	protected void create() {
-		Book book = new Book();
-		book.setTitle("Master of the Universe");
-		book.setAuthor("Timotheo Klokeo");
-		book.setPrice(103.45f);
-		
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		
-		session.save(book);
-		
-		session.getTransaction().commit();
-		session.close();
-	}
-	
-	protected void read() {
-		
-	}
-	
-	protected void update() {
-		
-	}
-	
-	protected void delete() {
-		
-	}
-	
-	
-	public static void main(String[] args) {
-		BookManager manager = new BookManager();
-		manager.setUp();
-		manager.create();
-		manager.exit();
-
-	}
 
 }
