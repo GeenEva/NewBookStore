@@ -1,6 +1,4 @@
-package Domain;
-
-import DAOOS.BookDAOImplementation;
+package net.codejava.hibernate;
 
 public class AtTheCounter {
 
@@ -10,7 +8,7 @@ public class AtTheCounter {
 		
 		BookDAOImplementation bookDAO = new BookDAOImplementation();
 		
-		Book book = new Book("hihihi", "Jo Anja", 5.78f);
+		Book book = new Book("dididada", "Joo Anjas", 15.78f);
 		System.out.println(book.toString());
 		bookDAO.createBook(book);
 		

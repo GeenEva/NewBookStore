@@ -1,4 +1,4 @@
-package Domain;
+package net.codejava.hibernate;
 
 import javax.persistence.*;
 

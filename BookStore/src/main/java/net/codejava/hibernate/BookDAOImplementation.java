@@ -1,28 +1,25 @@
-package DAOOS;
+package net.codejava.hibernate;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import Domain.Book;
-import net.codejava.hibernate.BookManager;
-
 public class BookDAOImplementation {
 
-	SessionFactory sessionFactory;
-	BookManager manager = new BookManager();
+	BookManager bookManager = new BookManager();
 	
 	
 	public void createBook(Book book) {
 		
-		sessionFactory = manager.setUp();
+		SessionFactory sessionFactory = bookManager.setUp();
 		Session session = sessionFactory.openSession();
+		
 		session.beginTransaction();
 		
 		session.save(book);
 		
 		session.getTransaction().commit();
 		session.close();
-		manager.exit();
+		bookManager.exit();
 	}
 	
 	public Book readBook(String bookTitle) {
