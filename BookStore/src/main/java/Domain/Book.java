@@ -1,4 +1,4 @@
-package Domain;
+package domain;
 
 import javax.persistence.*;
 
@@ -13,11 +13,17 @@ public class Book {
 	
 	public Book() {}
 	
+	public Book(long id) {
+		this.id = id;
+	}
+	
 	public Book(String title, String author, float price) {
 		this.title = title;
 		this.author = author;
 		this.price = price;
 	}
+	
+
 	
 	@Id
 	@Column(name = "book_id")
@@ -49,7 +55,7 @@ public class Book {
 	
 	@Override
 	public String toString() {
-		return title + "  " + author + "  " + price + "  ";
+		return id + "  " + title + "  " + author + "  " + price + "  ";
 	}
 	
 
