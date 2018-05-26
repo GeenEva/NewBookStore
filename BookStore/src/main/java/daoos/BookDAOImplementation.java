@@ -1,7 +1,10 @@
-package net.codejava.hibernate;
+package daoos;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
+import Domain.Book;
+import net.codejava.hibernate.BookManager;
 
 public class BookDAOImplementation {
 
