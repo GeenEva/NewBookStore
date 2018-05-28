@@ -1,6 +1,6 @@
 package net.codejava.hibernate;
 
-import daoos.AccountDAOImp;
+import daoos.AccountDAOImplementation;
 import domain.Account;
 import domain.Account.TypeOfAccount;
 
@@ -10,7 +10,7 @@ public class AtTheCounter {
 	
 	public static void main(String[] args) {
 
-		AccountDAOImp accountDAO = new AccountDAOImp();
+		AccountDAOImplementation accountDAO = new AccountDAOImplementation();
 		
 		Account account = new Account(TypeOfAccount.DEFAULT, "miAUw@mail.com", "weightword");
 		

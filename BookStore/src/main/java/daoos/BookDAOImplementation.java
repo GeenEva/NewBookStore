@@ -3,7 +3,7 @@ package daoos;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import domain.Book;
+import evenuitproberen.Book;
 import net.codejava.hibernate.SessionFactoryClass;
 
 public class BookDAOImplementation {

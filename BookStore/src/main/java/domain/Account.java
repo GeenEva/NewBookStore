@@ -1,5 +1,4 @@
 package domain;
-import domain.Account.TypeOfAccount;
 import javax.persistence.*;
 
 
@@ -11,6 +10,7 @@ public class Account {
 	private int id;
 	private String email;
 	private String password;
+	
 	private TypeOfAccount accountType;
 	
 	
@@ -51,6 +51,7 @@ public class Account {
 	
 
 	@Enumerated(EnumType.STRING)
+	@Column(name = "account_type")
 	public TypeOfAccount getAccountType() {
 		return accountType;
 	}

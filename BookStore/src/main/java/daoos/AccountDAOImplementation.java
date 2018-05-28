@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import domain.Account;
 import net.codejava.hibernate.SessionFactoryClass;
 
-public class AccountDAOImp {
+public class AccountDAOImplementation {
 	
 	SessionFactoryClass sessionFactoryClass = new SessionFactoryClass();
 	
