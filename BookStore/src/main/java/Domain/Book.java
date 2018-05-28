@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "book")
-public class Book {
+public class Book extends Product{
 	
 	private long id;
 	private String title;

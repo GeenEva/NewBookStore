@@ -4,16 +4,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import domain.Book;
-import net.codejava.hibernate.BookManager;
+import net.codejava.hibernate.SessionFactoryClass;
 
 public class BookDAOImplementation {
 
-	BookManager bookManager = new BookManager();
+	SessionFactoryClass sessionFactoryClass = new SessionFactoryClass();
 	
 	
 	public void createBook(Book book) {
 		
-		SessionFactory sessionFactory = bookManager.setUp();
+		SessionFactory sessionFactory = sessionFactoryClass.setUp();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
@@ -21,22 +21,22 @@ public class BookDAOImplementation {
 		
 		session.getTransaction().commit();
 		session.close();
-		bookManager.exit();
+		sessionFactoryClass.exit();
 	}
 	
 	public Book readBook(long id) {
-		SessionFactory sessionFactory = bookManager.setUp();
+		SessionFactory sessionFactory = sessionFactoryClass.setUp();
 		Session session = sessionFactory.openSession();
 		
 		Book book = session.get(Book.class, id);
-		bookManager.exit();
+		sessionFactoryClass.exit();
 			
 		return book;
 	}
 	
 	public Book updateBook(Book book) {
 		
-		SessionFactory sessionFactory = bookManager.setUp();
+		SessionFactory sessionFactory = sessionFactoryClass.setUp();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
@@ -48,14 +48,14 @@ public class BookDAOImplementation {
 		book = readBook(book.getId());
 		
 		session.close();
-		bookManager.exit();
+		sessionFactoryClass.exit();
 		
 		return book;
 	}
 	
 	public void deleteBook(Book book) {
 		
-		SessionFactory sessionFactory = bookManager.setUp();
+		SessionFactory sessionFactory = sessionFactoryClass.setUp();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
@@ -64,7 +64,7 @@ public class BookDAOImplementation {
 		session.getTransaction().commit();
 		session.close();
 		
-		bookManager.exit();
+		sessionFactoryClass.exit();
 		
 		System.out.println("Book has been deleted... at least in the database...");
 	}

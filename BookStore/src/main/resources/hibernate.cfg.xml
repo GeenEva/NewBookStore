@@ -10,8 +10,11 @@
     <property name="connection.username">root</property>
     <property name="connection.password">mijnjavawachtwoord</property>
     <property name="show_sql">true</property>
+ 
+ 
         
     <mapping class="domain.Book" />
+    <mapping class="domain.Account" />
      
   </session-factory>
 </hibernate-configuration>
