@@ -1,8 +1,6 @@
-package evenuitproberen;
+package domain;
 
 import javax.persistence.*;
-
-import domain.Product;
 
 @Entity
 @Table(name = "book")

@@ -12,7 +12,7 @@ public class AtTheCounter {
 
 		AccountDAOImplementation accountDAO = new AccountDAOImplementation();
 		
-		Account account = new Account(TypeOfAccount.DEFAULT, "miAUw@mail.com", "weightword");
+		Account account = new Account(TypeOfAccount.DEFAULT, "miAUuuuw@mail.com", "weightword");
 		
 		
 		
