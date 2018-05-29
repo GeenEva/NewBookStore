@@ -1,16 +1,18 @@
 package daoos;
 
+import java.lang.reflect.Executable;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import domain.Book;
+
 
 public class GenericDAO<T> {
 	
-	private final Class<T> clazz = null;
-	private T primaryKey;
+	private Class<T> clazz = null;
 	
+
 	
 	
 	public void createObject(T entity) {
@@ -24,35 +26,23 @@ public class GenericDAO<T> {
 		entityManagerFactory.close();
 	}
 	
-	public T readObject(long id) {
+	public T readObject(Class<?> type, long id) {
 		
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
 		entityManager.clear(); //empties the entitymanager from persistence context
-		T entity = entityManager.find(clazz, id);
+		entityManager.find(type.getClass(), id);
+		
+		System.out.println((entityManager.find(type.getClass(), id)).toString());
 		
 		entityManagerFactory.close();
 			
-		return entity;
+		return null;
 	}
 	
-	//Overloaded
-public T readObject(T entity) {
-		
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		
-		entityManager.clear(); //empties the entitymanager from persistence context
 	
-		//HAVE TO SOLVE THIS
-		entity = entityManager.find(clazz, primaryKey);
-		
-		entityManagerFactory.close();
-			
-		return entity;
-	}
-	
+/*	
 	
 	public T updateObject(T entity) {
 		
@@ -72,8 +62,23 @@ public T readObject(T entity) {
 		
 		return entity;
 	}
+	*/
 	
-	public void deleteObject() {
+	public void deleteObject(T entity) {
+			
+			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
+			EntityManager entityManager = entityManagerFactory.createEntityManager();
+			
+			entityManager.getTransaction().begin();
+			entityManager.clear();
+			
+			T entity2 = entityManager.find(clazz, entity);
+			entityManager.remove(entity2);
+			
+			entityManager.getTransaction().commit();
+			entityManagerFactory.close();
+			
+			System.out.println("Object has been deleted... at least in the database...");
 		
 	}
 	

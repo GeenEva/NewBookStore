@@ -8,16 +8,7 @@ public class Dog {
 
 	private long id;
 	private String name;
-	private Person person;
 	
-	@OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
-	public Person getPerson() {
-		return person;
-	}
-
-	public void setPerson(Person person) {
-		this.person = person;
-	}
 
 	public Dog() {}
 
