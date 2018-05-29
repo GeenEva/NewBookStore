@@ -27,7 +27,7 @@ public class Book extends Product{
 	
 	@Id
 	@Column(name = "book_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long getId() {
 		return id;
 	}

@@ -29,11 +29,13 @@ public class BookDAOImplementation {
 	}
 	
 	public Book readBook(long id) {
-		SessionFactory sessionFactory = sessionFactoryClass.setUp();
-		Session session = sessionFactory.openSession();
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
-		Book book = session.get(Book.class, id);
-		sessionFactoryClass.exit();
+		entityManager.clear(); //empties the entitymanager from persistence context
+		Book book = entityManager.find(Book.class, id);
+		
+		entityManagerFactory.close();
 			
 		return book;
 	}
@@ -57,18 +59,19 @@ public class BookDAOImplementation {
 		return book;
 	}
 	
-	public void deleteBook(Book book) {
+	public void deleteBook(long id ) {
 		
-		SessionFactory sessionFactory = sessionFactoryClass.setUp();
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
-		session.delete(book);
+		entityManager.getTransaction().begin();
+		entityManager.clear();
 		
-		session.getTransaction().commit();
-		session.close();
+		Book book = entityManager.find(Book.class, id);
+		entityManager.remove(book);
 		
-		sessionFactoryClass.exit();
+		entityManager.getTransaction().commit();
+		entityManagerFactory.close();
 		
 		System.out.println("Book has been deleted... at least in the database...");
 	}

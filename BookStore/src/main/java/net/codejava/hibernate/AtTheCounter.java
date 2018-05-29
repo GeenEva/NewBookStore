@@ -15,9 +15,13 @@ public class AtTheCounter {
 	public static void main(String[] args) {
 		
 		BookDAOImplementation bookDAO = new BookDAOImplementation();
-		Book book = new Book("Wat 3 titel", "Goede Schrijver", 89.67f);
-		bookDAO.createBook(book);
+	//	Book book = new Book("Wat 9179 titel", "Goedte Schrijvor", 19.67f);
+	//	bookDAO.createBook(book);
 
+	//	System.out.println(bookDAO.readBook(1));
+		
+		bookDAO.deleteBook(17);
+		
 	/*	AccountDAOImplementation accountDAO = new AccountDAOImplementation();
 		PersonDAOImplementation personDAO = new PersonDAOImplementation();
 		
