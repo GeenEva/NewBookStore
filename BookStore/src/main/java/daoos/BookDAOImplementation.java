@@ -1,5 +1,9 @@
 package daoos;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -12,16 +16,16 @@ public class BookDAOImplementation {
 	
 	
 	public void createBook(Book book) {
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
-		SessionFactory sessionFactory = sessionFactoryClass.setUp();
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		entityManager.getTransaction().begin();
 		
-		session.save(book);
+		entityManager.persist(book);
 		
-		session.getTransaction().commit();
-		session.close();
-		sessionFactoryClass.exit();
+		entityManager.getTransaction().commit();
+		entityManagerFactory.close();
+		
 	}
 	
 	public Book readBook(long id) {
