@@ -18,7 +18,6 @@ public class BookDAOImplementation {
 	public void createBook(Book book) {
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		
 		entityManager.getTransaction().begin();
 		
 		entityManager.persist(book);
@@ -42,19 +41,19 @@ public class BookDAOImplementation {
 	
 	public Book updateBook(Book book) {
 		
-		SessionFactory sessionFactory = sessionFactoryClass.setUp();
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
 		
 		//updating the book in the database
-		session.update(book);
-		session.getTransaction().commit();
+		entityManager.merge(book);
+		entityManager.getTransaction().commit();
 		
-		//getting the updated book back from the database
+		//getting the updated book back from the database and update variable book
 		book = readBook(book.getId());
 		
-		session.close();
-		sessionFactoryClass.exit();
+		entityManagerFactory.close();
+		
 		
 		return book;
 	}
