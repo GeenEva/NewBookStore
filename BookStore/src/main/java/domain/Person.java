@@ -9,7 +9,8 @@ public class Person {
 	private long id;
 	private String name;
 	private String lastName;
-	private Account account;	
+	private Account account;
+	private Dog dog;
 	
 	public Person() {}
 
@@ -60,6 +61,16 @@ public class Person {
 
 	public void setAccount(Account account) {
 		this.account = account;
+	}
+
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "dog_id")	
+	public Dog getDog() {
+		return dog;
+	}
+
+	public void setDog(Dog dog) {
+		this.dog = dog;
 	}
 
 }
