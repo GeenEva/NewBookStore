@@ -9,14 +9,17 @@ import javax.persistence.Persistence;
 
 public class GenericDAO<T> {
 	
-	EntityManagerFactory entityManagerFactory;
-	EntityManager entityManager;
+	private EntityManagerFactory entityManagerFactory;
+	private EntityManager entityManager;
 	private Class<T> clazz = null;
 	
-	public GenericDAO(){
+	
+	public GenericDAO(Class<T> classToSet){
 		this.entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
 		this.entityManager = entityManagerFactory.createEntityManager();
+		this.clazz = classToSet;
 	}
+	
 	
 	public void createObject(T entity) {
 		
@@ -31,13 +34,13 @@ public class GenericDAO<T> {
 	public T readObject(Class<?> type, long id) {
 		
 		entityManager.clear(); //empties the entitymanager from persistence context
-		entityManager.find(type.getClass(), id);
+		T entity = entityManager.find(clazz, id);
 		
-		System.out.println((entityManager.find(type.getClass(), id)).toString());
+//		System.out.println((entityManager.find(type.getClass(), id)).toString());
 		
 		entityManagerFactory.close();
 			
-		return null;
+		return entity;
 	}
 	
 	

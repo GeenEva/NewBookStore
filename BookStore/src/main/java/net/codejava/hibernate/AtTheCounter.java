@@ -10,14 +10,22 @@ import domain.Person;
 
 public class AtTheCounter {
 	
+//	private static final Class<?> Book = null;
+
 	public static void main(String[] args) {
 		
-		GenericDAO<Book> genDAO = new GenericDAO<Book>();
 		
-		Book book = new Book("897yui", "Johu hipstero", 19.78f);
+		Book book = new Book();
 		
+		Class c = book.getClass();
+		
+		GenericDAO<Book> genDAO = new GenericDAO<Book>(c);
+		
+		System.out.println((genDAO.readObject(c, 12)).toString());
+		
+	
 
-		genDAO.createObject(book);
+	//	genDAO.createObject(book);
 
 	}
 	

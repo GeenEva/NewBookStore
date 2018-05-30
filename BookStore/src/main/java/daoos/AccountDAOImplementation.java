@@ -4,7 +4,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import domain.Account;
-import domain.Book;
 import net.codejava.hibernate.SessionFactoryClass;
 
 public class AccountDAOImplementation {
