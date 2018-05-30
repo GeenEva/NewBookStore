@@ -13,6 +13,10 @@ public class GenericDAO<T> {
 	private EntityManager entityManager;
 	private Class<T> clazz = null;
 	
+	public GenericDAO() {
+		this.entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
+		this.entityManager = entityManagerFactory.createEntityManager();
+	}
 	
 	public GenericDAO(Class<T> classToSet){
 		this.entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
@@ -36,7 +40,7 @@ public class GenericDAO<T> {
 		entityManager.clear(); //empties the entitymanager from persistence context
 		T entity = entityManager.find(clazz, id);
 		
-//		System.out.println((entityManager.find(type.getClass(), id)).toString());
+		System.out.println((entityManager.find(type.getClass(), id)).toString());
 		
 		entityManagerFactory.close();
 			
@@ -44,32 +48,25 @@ public class GenericDAO<T> {
 	}
 	
 	
-/*	
-	
-	public T updateObject(T entity) {
+	public void updateObject(T entity) {
 		
 		entityManager.getTransaction().begin();
 		
-		//updating the object in the database
 		entityManager.merge(entity);
 		entityManager.getTransaction().commit();
 		
-		//getting the updated object back from the database 
-		entity = readObject(entity);
 		
 		entityManagerFactory.close();
 		
-		
-		return entity;
 	}
-	*/
 	
-	public void deleteObject(T entity) {
+	
+	public void deleteObject(long id) {
 			
 			entityManager.getTransaction().begin();
 			entityManager.clear();
 			
-			T entity2 = entityManager.find(clazz, entity);
+			T entity2 = entityManager.find(clazz, id);
 			entityManager.remove(entity2);
 			
 			entityManager.getTransaction().commit();

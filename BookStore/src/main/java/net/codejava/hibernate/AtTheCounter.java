@@ -14,18 +14,29 @@ public class AtTheCounter {
 
 	public static void main(String[] args) {
 		
+//DELETE	//	Book book = new Book();
+			//	Class c = book.getClass();
 		
-		Book book = new Book();
+			//	GenericDAO<Book> genDAO = new GenericDAO<Book>(c);
+			//	genDAO.deleteObject(7);	
 		
-		Class c = book.getClass();
+//UPDATE	Works only with all fields given
+			//	Book book = new Book(12);
+			//	book.setTitle("Nieuwe Tietel");
+			//	book.setAuthor("autoor");
+			//	book.setPrice(123);
 		
-		GenericDAO<Book> genDAO = new GenericDAO<Book>(c);
+			//	GenericDAO<Book> genDAO = new GenericDAO<Book>();
+			//	genDAO.updateObject(book);
 		
-		System.out.println((genDAO.readObject(c, 12)).toString());
 		
-	
+//READ		//	Book book = new Book();
+			//	Class c = book.getClass();	
+			//	GenericDAO<Book> genDAO = new GenericDAO<Book>(c);
+			//	System.out.println((genDAO.readObject(c, 12)).toString());
 
-	//	genDAO.createObject(book);
+//CREATE	//	GenericDAO<Book> genDAO = new GenericDAO<Book>(c);
+			//	genDAO.createObject(book);
 
 	}
 	
