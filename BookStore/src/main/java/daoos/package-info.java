@@ -1,4 +1,31 @@
-/**
+/**	TESTING GENERIC DAO'S
+//DELETE	//	Book book = new Book();
+			//	Class c = book.getClass();
+		
+			//	GenericDAO<Book> genDAO = new GenericDAO<Book>(c);
+			//	genDAO.deleteObject(7);	
+		
+//UPDATE	Works only with all fields given
+			//	Book book = new Book(12);
+			//	book.setTitle("Nieuwe Tietel");
+			//	book.setAuthor("autoor");
+			//	book.setPrice(123);
+		
+			//	GenericDAO<Book> genDAO = new GenericDAO<Book>();
+			//	genDAO.updateObject(book);
+		
+		
+//READ		//	Book book = new Book();
+			//	Class c = book.getClass();	
+			//	GenericDAO<Book> genDAO = new GenericDAO<Book>(c);
+			//	System.out.println((genDAO.readObject(5)).toString());
+		
+			
+
+//CREATE	//	GenericDAO<Book> genDAO = new GenericDAO<Book>(c);
+			//	genDAO.createObject(book);
+ * */
+ /*
  * Old testing code: testing the Book CRUD methods
  * 		
 //		BookDAOImplementation bookDAO = new BookDAOImplementation();

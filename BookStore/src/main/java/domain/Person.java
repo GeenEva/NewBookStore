@@ -18,10 +18,11 @@ public class Person {
 		this.id = id;
 	}
 	
-	public Person(String name, String lastName, Account account) {
+	public Person(String name, String lastName, Account account, Dog dog) {
 		this.name = name;
 		this.lastName = lastName;
 		this.account = account;
+		this.dog = dog;
 	}
 	
 	@Id

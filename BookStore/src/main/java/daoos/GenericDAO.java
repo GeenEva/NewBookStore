@@ -9,14 +9,22 @@ import javax.persistence.Persistence;
 
 public class GenericDAO<T> {
 	
+	/* The "clazz" field is only needed for the readObject() and deleteObject() methods, so with these
+	 * methods you have to use the constructor with parameter (Class<T> classToSet)
+	 */
+	
 	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager;
 	private Class<T> clazz = null;
+	
+	
+	// The constructors instantiate the entityManager and entityManagerFactory
 	
 	public GenericDAO() {
 		this.entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
 		this.entityManager = entityManagerFactory.createEntityManager();
 	}
+	
 	
 	public GenericDAO(Class<T> classToSet){
 		this.entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
@@ -25,23 +33,20 @@ public class GenericDAO<T> {
 	}
 	
 	
+	
 	public void createObject(T entity) {
 		
 		entityManager.getTransaction().begin();
-		
 		entityManager.persist(entity);
-		
 		entityManager.getTransaction().commit();
 		entityManagerFactory.close();
 	}
+
 	
-	public T readObject(Class<?> type, long id) {
+	public T readObject(long id) {
 		
 		entityManager.clear(); //empties the entitymanager from persistence context
 		T entity = entityManager.find(clazz, id);
-		
-		System.out.println((entityManager.find(type.getClass(), id)).toString());
-		
 		entityManagerFactory.close();
 			
 		return entity;
@@ -51,11 +56,8 @@ public class GenericDAO<T> {
 	public void updateObject(T entity) {
 		
 		entityManager.getTransaction().begin();
-		
 		entityManager.merge(entity);
 		entityManager.getTransaction().commit();
-		
-		
 		entityManagerFactory.close();
 		
 	}
@@ -64,16 +66,27 @@ public class GenericDAO<T> {
 	public void deleteObject(long id) {
 			
 			entityManager.getTransaction().begin();
-			entityManager.clear();
-			
-			T entity2 = entityManager.find(clazz, id);
-			entityManager.remove(entity2);
-			
+			entityManager.clear();//empties the entitymanager from persistence context
+			T entity = entityManager.find(clazz, id);
+			entityManager.remove(entity);
 			entityManager.getTransaction().commit();
 			entityManagerFactory.close();
-			
-			System.out.println("Object has been deleted... at least in the database...");
 		
 	}
+	
+//	ALTERNATIVE WAY FOR READ METHOD, BUT	
+/*	DON'T KNOW HOW TO WORK OUT THE READ METHOD WITH THIS SIGNATURE...
+ * 	public T readObject(Class<?> type, long id) {
+ 
+		entityManager.clear(); //empties the entitymanager from persistence context
+		entityManager.find(type, id);
+		
+			//	System.out.println((entityManager.find(type.getClass(), id)).toString());
+		
+		entityManagerFactory.close();
+			
+		return null;
+	}
+*/
 	
 }

@@ -5,12 +5,12 @@ import javax.persistence.*;
 @Entity
 @Table(name = "account")
 public class Account {
+	
 	public enum TypeOfAccount {ADMIN, CUSTOMER, DEFAULT, EMPLOYEE};
 	
-	private int id;
+	private long id;
 	private String email;
 	private String password;
-	
 	private TypeOfAccount accountType;
 	
 	
@@ -26,11 +26,11 @@ public class Account {
 	@Id
 	@Column(name = "account_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	
@@ -41,6 +41,7 @@ public class Account {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	public String getPassword() {
 		return password;
 	}
