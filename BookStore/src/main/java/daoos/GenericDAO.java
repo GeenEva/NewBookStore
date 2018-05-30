@@ -1,6 +1,5 @@
 package daoos;
 
-import java.lang.reflect.Executable;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,14 +9,17 @@ import javax.persistence.Persistence;
 
 public class GenericDAO<T> {
 	
+	EntityManagerFactory entityManagerFactory;
+	EntityManager entityManager;
 	private Class<T> clazz = null;
 	
-
-	
+	public GenericDAO(){
+		this.entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
+		this.entityManager = entityManagerFactory.createEntityManager();
+	}
 	
 	public void createObject(T entity) {
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		
 		entityManager.getTransaction().begin();
 		
 		entityManager.persist(entity);
@@ -27,9 +29,6 @@ public class GenericDAO<T> {
 	}
 	
 	public T readObject(Class<?> type, long id) {
-		
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
 		entityManager.clear(); //empties the entitymanager from persistence context
 		entityManager.find(type.getClass(), id);
@@ -46,8 +45,6 @@ public class GenericDAO<T> {
 	
 	public T updateObject(T entity) {
 		
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		
 		//updating the object in the database
@@ -65,9 +62,6 @@ public class GenericDAO<T> {
 	*/
 	
 	public void deleteObject(T entity) {
-			
-			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BookStore");
-			EntityManager entityManager = entityManagerFactory.createEntityManager();
 			
 			entityManager.getTransaction().begin();
 			entityManager.clear();
