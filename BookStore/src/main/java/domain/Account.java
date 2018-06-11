@@ -12,6 +12,7 @@ public class Account {
 	private String email;
 	private String password;
 	private TypeOfAccount accountType;
+	private Person person;
 	
 	
 	public Account() {}
@@ -61,6 +62,17 @@ public class Account {
 		this.accountType = accountType;
 	}
 
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "Account [id=" + id + ", email=" + email + ", password=" + password + ", accountType=" 

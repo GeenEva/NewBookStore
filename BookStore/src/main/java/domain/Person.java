@@ -10,7 +10,6 @@ public class Person {
 	private String name;
 	private String lastName;
 	private Account account;
-	private Dog dog;
 	
 	public Person() {}
 
@@ -18,11 +17,11 @@ public class Person {
 		this.id = id;
 	}
 	
-	public Person(String name, String lastName, Account account, Dog dog) {
+	public Person(String name, String lastName, Account account) {
 		this.name = name;
 		this.lastName = lastName;
 		this.account = account;
-		this.dog = dog;
+		
 	}
 	
 	@Id
@@ -36,7 +35,8 @@ public class Person {
 	public void setId(long id) {
 		this.id = id;
 	}
-
+	
+	@Column(length = 30, nullable = false)
 	public String getName() {
 		return name;
 	}
@@ -64,14 +64,5 @@ public class Person {
 		this.account = account;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "dog_id")	
-	public Dog getDog() {
-		return dog;
-	}
-
-	public void setDog(Dog dog) {
-		this.dog = dog;
-	}
 
 }

@@ -9,6 +9,9 @@ public class Dog {
 	private long id;
 	private String name;
 	
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	private Baas baas;
 
 	public Dog() {}
 
